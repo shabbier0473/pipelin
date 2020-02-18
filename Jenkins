@@ -3,9 +3,9 @@ pipeline{
         label 'maven'
     }
     stages{
-        stage ('build'){
-            when{
-                branch 'origin/master'
+        stage ('build master'){
+            when {
+                branch 'master'
             }
             tools{
                 maven 'MAVEN_HOME'
@@ -13,10 +13,22 @@ pipeline{
             }
             steps{
                 timestamps{
-                 sh 'mvn --version'
+                 echo '========master======='
                  sh 'mvn install' 
                 }
                
+            }
+        }
+        stage ('build release'){
+            when {
+                branch 'release'
+            }
+            tools{
+                maven 'MAVEN_HOME'
+            }
+            steps{
+                echo '======release========='
+                sh 'mvn install'
             }
         }
     }

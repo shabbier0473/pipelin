@@ -3,19 +3,15 @@ pipeline{
         label 'maven'
     }
     stages{
-        stage ('build'){
+        stage 'build'{
             tools{
                 maven 'MAVEN_HOME'
                 jdk 'JAVA_HOME'
             }
             steps{
-                timestamps{
-                 sh 'mvn --version'
-                 sh 'java -version' 
-                }
-               
+                sh 'mvn validate'
+                sh 'mvn install'
             }
         }
     }
 }
-

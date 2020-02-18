@@ -5,7 +5,7 @@ pipeline{
     stages{
         stage ('build'){
             when{
-                branch 'master'
+                branch 'origin/master'
             }
             tools{
                 maven 'MAVEN_HOME'
